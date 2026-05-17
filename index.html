@@ -121,53 +121,53 @@
     <div class="software-container">
         <div class="software-scroll">
             <div class="software-item" title="SolidWorks">
-                <img src="Images/software/solidworks.png" alt="SolidWorks">
+                <img src="Images/Software/solidworks.png" alt="SolidWorks">
             </div>
             <div class="software-item" title="CATIA">
-                <img src="Images/software/catia.png" alt="CATIA">
+                <img src="Images/Software/catia.png" alt="CATIA">
             </div>
             <div class="software-item" title="ANSYS">
-                <img src="Images/software/ansys.png" alt="ANSYS">
+                <img src="Images/Software/ansys.png" alt="ANSYS">
             </div>
             <div class="software-item" title="Abaqus">
-                <img src="Images/software/abaqus.png" alt="Abaqus">
+                <img src="Images/Software/abaqus.png" alt="Abaqus">
             </div>
             <div class="software-item" title="Autodesk Inventor">
-                <img src="Images/software/inventor.png" alt="Autodesk Inventor">
+                <img src="Images/Software/inventor.png" alt="Autodesk Inventor">
             </div>
             <div class="software-item" title="Fusion 360">
-                <img src="Images/software/fusion360.png" alt="Fusion 360">
+                <img src="Images/Software/fusion360.png" alt="Fusion 360">
             </div>
             <div class="software-item" title="Ultimaker Cura">
-                <img src="Images/software/cura.png" alt="Ultimaker Cura">
+                <img src="Images/Software/cura.png" alt="Ultimaker Cura">
             </div>
             <div class="software-item" title="AutoCAD">
-                <img src="Images/software/autocad.png" alt="AutoCAD">
+                <img src="Images/Software/autocad.png" alt="AutoCAD">
             </div>
             <!-- Duplicated for continuous loop -->
             <div class="software-item" title="SolidWorks">
-                <img src="Images/software/solidworks.png" alt="SolidWorks">
+                <img src="Images/Software/solidworks.png" alt="SolidWorks">
             </div>
             <div class="software-item" title="CATIA">
-                <img src="Images/software/catia.png" alt="CATIA">
+                <img src="Images/Software/catia.png" alt="CATIA">
             </div>
             <div class="software-item" title="ANSYS">
-                <img src="Images/software/ansys.png" alt="ANSYS">
+                <img src="Images/Software/ansys.png" alt="ANSYS">
             </div>
             <div class="software-item" title="Abaqus">
-                <img src="Images/software/abaqus.png" alt="Abaqus">
+                <img src="Images/Software/abaqus.png" alt="Abaqus">
             </div>
             <div class="software-item" title="Autodesk Inventor">
-                <img src="Images/software/inventor.png" alt="Autodesk Inventor">
+                <img src="Images/Software/inventor.png" alt="Autodesk Inventor">
             </div>
             <div class="software-item" title="Fusion 360">
-                <img src="Images/software/fusion360.png" alt="Fusion 360">
+                <img src="Images/Software/fusion360.png" alt="Fusion 360">
             </div>
             <div class="software-item" title="Ultimaker Cura">
-                <img src="Images/software/cura.png" alt="Ultimaker Cura">
+                <img src="Images/Software/cura.png" alt="Ultimaker Cura">
             </div>
             <div class="software-item" title="AutoCAD">
-                <img src="Images/software/autocad.png" alt="AutoCAD">
+                <img src="Images/Software/autocad.png" alt="AutoCAD">
             </div>
         </div>
     </div>
@@ -372,40 +372,6 @@ function closePopup() {
     document.getElementById('overlay').classList.remove('active');
     document.body.style.overflow = '';
 }
-</script>
-
-<script>
-document.getElementById("projectForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const formData = {
-        name: this[0].value,
-        organization: this[1].value,
-        email: this[2].value,
-        phone: this[3].value,
-        country: this[4].value,
-        city: this[5].value,
-        projectType: this[6].value,
-        service: this[7].value,
-        software: this[8].value,
-        version: this[9].value,
-        budget: this[11].value,
-        description: this[12].value,
-        source: this[13].value
-    };
-
-    fetch("https://script.google.com/macros/s/AKfycbxPez_7Utwj5KLIZDeiYOT-ZTVG7V46CM61SLXFUPGzIxEAMgHkMMaaj4Oz2XKlB6shdQ/exec", {
-        method: "POST",
-        body: JSON.stringify(formData)
-    })
-    .then(() => {
-        alert("Request submitted successfully!");
-        document.getElementById("projectForm").reset();
-    })
-    .catch(() => {
-        alert("Error submitting form");
-    });
-});
 </script>
 
 </body>
