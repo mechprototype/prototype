@@ -181,20 +181,34 @@ Experienced in delivering high-quality engineering solutions for clients across 
          SECTION 8: PROJECT REQUEST FORM
     ======================================== -->
     <section class="section" id="form">
-        <h2>Submit Your Project Details</h2>
-        <form class="project-form" id="projectForm">
-            <input type="text" placeholder="Full Name" required>
-            <input type="text" placeholder="Organization Name (optional)">
-            <input type="email" placeholder="Email Address" required>
-            <input type="text" placeholder="Phone (in international format)">
-            <input type="text" placeholder="Country">
-            <input type="text" placeholder="City">
-            <select required>
+        <h2>Start Your Project</h2>
+
+        <!-- Shown after successful submission -->
+        <div class="form-success" id="formSuccess">
+            ✅ Thank you! Your request has been submitted. I'll get back to you soon.
+        </div>
+
+        <form
+            class="project-form"
+            id="projectForm"
+            action="https://formspree.io/f/xdajonnn"
+            method="POST"
+        >
+            <!-- Custom email subject line -->
+            <input type="hidden" name="_subject" value="New Project Request — Prototype Mechanical Design">
+
+            <input type="text"  name="Full Name"           placeholder="Full Name" required>
+            <input type="text"  name="Organization"        placeholder="Organization Name (optional)">
+            <input type="email" name="Email"               placeholder="Email Address" required>
+            <input type="text"  name="Phone"               placeholder="Phone (in international format)">
+            <input type="text"  name="Country"             placeholder="Country">
+            <input type="text"  name="City"                placeholder="City">
+            <select name="Project Type" required>
                 <option value="">Select Project Type</option>
                 <option>Personal</option>
                 <option>Commercial</option>
             </select>
-            <select required>
+            <select name="Service Required" required>
                 <option value="">Service Required</option>
                 <option>3D Part Modeling</option>
                 <option>Assembly Design</option>
@@ -203,12 +217,10 @@ Experienced in delivering high-quality engineering solutions for clients across 
                 <option>Rendering</option>
                 <option>Other</option>
             </select>
-            <input type="text" placeholder="Preferred Software">
-            <input type="text" placeholder="Preferred Version">
-            <input type="text" placeholder="Your Currency Name">
-            <input type="file" multiple>
-            <select>
-                <option>Approximate Budget Range</option>
+            <input type="text" name="Preferred Software" placeholder="Preferred Software">
+            <input type="text" name="Preferred Version"  placeholder="Preferred Version">
+            <select name="Budget Range">
+                <option value="">Approximate Budget Range</option>
                 <option>Below $20</option>
                 <option>$21 - $50</option>
                 <option>$51 - $100</option>
@@ -216,9 +228,9 @@ Experienced in delivering high-quality engineering solutions for clients across 
                 <option>$501 - $1000</option>
                 <option>Above $1000</option>
             </select>
-            <textarea rows="5" placeholder="Describe your project requirements (dimensions, functionality, references, etc.)"></textarea>
-            <select>
-                <option>How did you find me?</option>
+            <textarea name="Project Description" rows="5" placeholder="Describe your project requirements (dimensions, functionality, references, etc.)"></textarea>
+            <select name="How did you find me">
+                <option value="">How did you find me?</option>
                 <option>LinkedIn</option>
                 <option>Telegram</option>
                 <option>Google</option>
@@ -362,6 +374,34 @@ Experienced in delivering high-quality engineering solutions for clients across 
             document.getElementById('overlay').classList.remove('active');
             document.body.style.overflow = '';
         }
+
+        /* ── FORMSPREE AJAX SUBMIT ──
+           Submits in the background so the user stays on the page
+           and sees a thank-you message instead of a redirect.
+        ── */
+        const form = document.getElementById('projectForm');
+        const successMsg = document.getElementById('formSuccess');
+
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const data = new FormData(form);
+            try {
+                const res = await fetch(form.action, {
+                    method: 'POST',
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (res.ok) {
+                    form.reset();
+                    form.style.display = 'none';
+                    successMsg.style.display = 'block';
+                } else {
+                    alert('Something went wrong. Please try again or contact me directly.');
+                }
+            } catch (err) {
+                alert('Network error. Please check your connection and try again.');
+            }
+        });
 
     </script>
 
