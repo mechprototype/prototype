@@ -1,74 +1,131 @@
+/* ============================================================
+   STYLE.CSS — Prototype | Mechanical Design
+   ------------------------------------------------------------
+   TABLE OF CONTENTS
+   1.  Base / Body
+   2.  Hero
+   3.  About
+   4.  Stats
+   5.  Services
+   6.  Projects
+   7.  CTA
+   8.  Software & Tools
+   9.  Form
+   10. Contact
+   11. Popup Overlay
+   ============================================================ */
+
+
+/* ============================================================
+   1. BASE / BODY
+   ============================================================ */
 body {
-    font-family: Arial;
+    font-family: Eras Medium ITC, sans-serif;
     margin: 0;
-    background: #f4f6f9;
+    background-color: #eef1f6;
+    background-image: radial-gradient(circle, #b0c4de 1px, transparent 1px);
+    background-size: 28px 28px;
+    color: #333;
 }
 
-/* HERO */
-.hero {
-    text-align: center;
-    padding: 60px;
-}
-.logo {
-    width: 70%;
-    max-width: 800px;
-}
-.btn {
-    display: inline-block;
-    padding: 12px 25px;
-    background: #007bff;
-    color: white;
-    border-radius: 8px;
-    text-decoration: none;
-    margin-top: 10px;
-}
-
-/* SECTION */
+/* Shared section wrapper — use this class for every new section */
 .section {
     padding: 50px;
     text-align: center;
 }
 
-/* STATS */
+
+/* ============================================================
+   2. HERO
+   ============================================================ */
+.hero {
+    text-align: center;
+    padding: 60px;
+}
+
+.logo {
+    width: 800px;
+    height: auto;
+    max-width: 90%;
+}
+
+.hero p {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #555;
+}
+
+
+/* ============================================================
+   3. ABOUT
+   ============================================================ */
+/* No extra styles needed — inherits .section */
+
+
+/* ============================================================
+   4. STATS
+   ============================================================ */
 .stats {
     display: flex;
     justify-content: center;
     gap: 50px;
     flex-wrap: wrap;
+    padding: 40px 50px 20px;
 }
+
 .stat {
     background: white;
     padding: 30px;
     border-radius: 15px;
     width: 180px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: default;
 }
+
 .stat:hover {
     transform: translateY(-8px) scale(1.05);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
+
 .stat h2 {
     font-size: 60px;
     color: #007bff;
+    margin: 0;
 }
+
+.stat p {
+    margin: 6px 0 0;
+}
+
 .icon {
-    font-size: 40px;
     margin-bottom: 10px;
 }
+
+.icon img {
+    width: 1.5cm;
+    height: 1.5cm;
+    object-fit: contain;
+}
+
 .countries {
     text-align: center;
     margin-top: 15px;
+    color: #555;
+    padding-bottom: 30px;
 }
 
-/* SERVICES */
+
+/* ============================================================
+   5. SERVICES
+   ============================================================ */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 30px;
 }
+
 .card {
     position: relative;
     background: white;
@@ -76,42 +133,123 @@ body {
     border-radius: 12px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: default;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
 }
+
 .card:hover {
     transform: translateY(-6px) scale(1.03);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
 }
+
 .tooltip {
     position: absolute;
     bottom: -45px;
     left: 50%;
     transform: translateX(-50%);
     background: #222;
+    color: #fff;
     padding: 6px 10px;
     border-radius: 10px;
     opacity: 0;
-    transition: 0.3s;
+    transition: opacity 0.3s;
     white-space: nowrap;
     font-size: 13px;
+    z-index: 10;
 }
-.card:hover .tooltip { opacity: 1; }
+
+.card:hover .tooltip {
+    opacity: 1;
+}
+
 .completed { color: #4CAF50; }
 .running   { color: #FFC107; }
 
-/* PROJECTS */
+
+/* ============================================================
+   6. PROJECTS
+   ============================================================ */
 .projects-grid {
     display: flex;
     justify-content: center;
-    gap: 80px;
+    gap: 100px;
     flex-wrap: wrap;
     margin-top: 20px;
 }
 
-/* SOFTWARE */
+.project-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    cursor: pointer;
+}
+
+.project-box {
+    width: 5cm;
+    height: 5cm;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-box:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.20);
+}
+
+.project-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.project-card p {
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+    text-align: center;
+}
+
+
+/* ============================================================
+   7. CTA — HAVE A SIMILAR PROJECT?
+   ============================================================ */
+.cta-section {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.cta-section h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.cta-btn {
+    display: inline-block;
+    padding: 14px 30px;
+    background: #007bff;
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.cta-btn:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+}
+
+
+/* ============================================================
+   8. SOFTWARE & TOOLS
+   ============================================================ */
 .software-container {
     overflow: hidden;
     padding: 30px 0;
-    background: #f4f6f9;
+    background: transparent;
     margin-top: 10px;
 }
 
@@ -123,22 +261,16 @@ body {
 }
 
 @keyframes scroll-left {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
 
 .software-item {
     flex-shrink: 0;
     width: 4cm;
-    aspect-ratio: auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    text-decoration: none;
     transition: transform 0.3s ease;
 }
 
@@ -154,69 +286,109 @@ body {
 }
 
 
-
-
-
-.projects-grid {
-    display: flex;
-    justify-content: center;
-    gap: 100px;
-    flex-wrap: wrap;
-    margin-top: 20px;
-}
-.project-card {
+/* ============================================================
+   9. FORM
+   ============================================================ */
+.project-form {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    cursor: pointer;
+    gap: 12px;
+    max-width: 500px;
+    margin: 20px auto 0;
 }
-.project-box {
-    width: 5cm;
-    height: 5cm;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.project-box:hover {
-    transform: translateY(-10px) scale(1.05);
-    box-shadow: 0 25px 50px rgba(0,0,0,0.20);
-}
-.project-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-.project-card p {
-    margin: 0;
+
+.project-form input,
+.project-form select,
+.project-form textarea {
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
     font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background: #fff;
     color: #333;
-    text-align: center;
 }
 
-/* ── OVERLAY ── */
+.project-form input:focus,
+.project-form select:focus,
+.project-form textarea:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+.project-form button {
+    margin-top: 10px;
+    padding: 12px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.project-form button:hover {
+    background: #0056b3;
+    transform: scale(1.03);
+}
+
+
+/* ============================================================
+   10. CONTACT
+   ============================================================ */
+.contact-section {
+    padding-bottom: 60px;
+}
+
+.contact-sub {
+    color: #888;
+    margin-bottom: 40px;
+    font-size: 15px;
+}
+
+.contact-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3cm;
+    flex-wrap: wrap;
+}
+
+.contact-card {
+    display: inline-flex;
+    text-decoration: none;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.contact-card img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    border-radius: 16px;
+}
+
+.contact-card:hover {
+    transform: scale(1.2);
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.25));
+}
+
+
+/* ============================================================
+   11. POPUP OVERLAY
+   ============================================================ */
 .overlay {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.85);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-}
-.overlay.active {
-    display: flex;
-}
-
-/* ── OVERLAY ── */
-.overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.75); /* slightly softer */
-    backdrop-filter: blur(6px);      /* glass effect */
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(6px);
     z-index: 1000;
     justify-content: center;
     align-items: center;
@@ -226,26 +398,21 @@ body {
     display: flex;
 }
 
-/* ── POPUP BOX ── */
 .popup {
     position: relative;
-    background: rgba(20, 20, 20, 0.35); /* cleaner glass */
+    background: rgba(20, 20, 20, 0.35);
     backdrop-filter: blur(12px);
     border-radius: 18px;
     padding: 40px 50px;
-
     display: flex;
     flex-direction: row;
     gap: 60px;
-
     max-width: 90vw;
     max-height: 90vh;
     overflow-y: auto;
-
-    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
 }
 
-/* Close button */
 .close-btn {
     position: absolute;
     top: 12px;
@@ -254,13 +421,13 @@ body {
     border: none;
     font-size: 26px;
     cursor: pointer;
-    color: rgba(255,255,255,0.7);
+    color: rgba(255, 255, 255, 0.7);
 }
+
 .close-btn:hover {
     color: #fff;
 }
 
-/* LEFT SIDE */
 .popup-left {
     display: flex;
     flex-direction: column;
@@ -268,46 +435,41 @@ body {
     flex-shrink: 0;
 }
 
-/* MAIN IMAGE */
 .popup-img1 {
     width: 8cm;
     height: 8cm;
     object-fit: cover;
     border-radius: 14px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
 }
 
-/* SECOND IMAGE */
 .popup-img2 {
     width: 6cm;
     height: 6cm;
     object-fit: cover;
     border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* RIGHT SIDE */
 .popup-right {
     display: flex;
     flex-direction: column;
     min-width: 260px;
 }
 
-/* TITLE */
 .popup-right h2 {
     margin-bottom: 20px;
     font-size: 24px;
     color: #ffffff;
 }
 
-/* TABLE */
 .details-table {
     width: 100%;
     border-collapse: collapse;
 }
 
 .details-table tr {
-    border-bottom: 1px solid rgba(255,255,255,0.15);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .details-table td {
@@ -316,14 +478,12 @@ body {
     color: #ffffff;
 }
 
-/* LABEL */
 .details-table td.label {
     font-weight: bold;
-    color: rgba(255,255,255,0.6);
+    color: rgba(255, 255, 255, 0.6);
     width: 110px;
 }
 
-/* STATUS COLORS */
 td.status-completed {
     color: #4CAF50;
     font-weight: bold;
@@ -334,7 +494,6 @@ td.status-ongoing {
     font-weight: bold;
 }
 
-/* SCOPE LIST */
 .scope-list {
     margin: 0;
     padding-left: 18px;
@@ -343,142 +502,14 @@ td.status-ongoing {
 .scope-list li {
     margin-bottom: 4px;
 }
-/* ── CONTACT ── */
-.contact-section {
-    padding-bottom: 50px;
-}
-.contact-sub {
-    color: #888;
-    margin-bottom: 40px;
-    font-size: 15px;
-}
-.contact-icons {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-}
-.contact-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-    padding: 0;
-    border-radius: 50%;
-    background: transparent;
-    box-shadow: none;
-    width: 60px;
-    height: 60px;
-    justify-content: center;
-    transition: transform 0.3s ease;
-    border: none;
-}
-.contact-card:hover {
-    transform: scale(1.2);
-}
-.contact-icon-wrap {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.contact-icon-wrap svg {
-    width: 35px;
-    height: 35px;
-}
-.whatsapp .contact-icon-wrap { background: #e8f5e9; color: #25D366; }
-.gmail    .contact-icon-wrap { background: #fce4e4; color: #EA4335; }
-.telegram .contact-icon-wrap { background: #e3f2fd; color: #0088cc; }
-.linkedin .contact-icon-wrap { background: #e3f0fb; color: #0A66C2; }
-.whatsapp:hover { }
-.gmail:hover    { }
-.telegram:hover { }
-.linkedin:hover { }
-.contact-label {
-    font-weight: 700;
-    font-size: 15px;
-    color: #222;
-}
-.contact-detail {
-    display: none;
-}
 
-/* CTA SECTION */
-.cta-section {
-    text-align: center;
-    padding: 60px 20px;
-}
 
-.cta-section h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-}
+/* ============================================================
+   ADD NEW SECTIONS BELOW THIS LINE
+   ------------------------------------------------------------
+   Copy this template for each new section:
 
-/* CTA BUTTON */
-.cta-btn {
-    display: inline-block;
-    padding: 14px 30px;
-    background: #007bff;
-    color: white;
-    border-radius: 10px;
-    text-decoration: none;
-    font-size: 16px;
-    transition: 0.3s;
-}
-
-.cta-btn:hover {
-    background: #0056b3;
-    transform: scale(1.05);
-}
-
-/* FORM SECTION */
-.project-form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    max-width: 500px;
-    margin: 20px auto 0;
-}
-
-/* INPUTS */
-.project-form input,
-.project-form select,
-.project-form textarea {
-    padding: 12px 14px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-    width: 100%;
-    box-sizing: border-box;
-    transition: 0.2s;
-}
-
-/* FOCUS EFFECT */
-.project-form input:focus,
-.project-form select:focus,
-.project-form textarea:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0,123,255,0.2);
-}
-
-/* BUTTON */
-.project-form button {
-    margin-top: 10px;
-    padding: 12px;
-    background: #007bff;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 15px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.project-form button:hover {
-    background: #0056b3;
-    transform: scale(1.03);
-}
+   .your-section-class {
+       your styles here;
+   }
+   ============================================================ */
