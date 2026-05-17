@@ -528,3 +528,28 @@ td.status-ongoing {
     font-size: 15px;
     text-align: center;
 }
+/* ============================================================
+   FORM SUCCESS MESSAGE
+   ============================================================ */
+.form-success {
+    display: none;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 18px 24px;
+    background: #e6f4ea;
+    border: 1px solid #4CAF50;
+    border-radius: 10px;
+    color: #2e7d32;
+    font-size: 15px;
+    text-align: center;
+}
+
+/* Hide form after successful submission */
+.project-form.hidden {
+    display: none !important;
+}
+
+/* Show success message after submission */
+.form-success.visible {
+    display: block !important;
+}
