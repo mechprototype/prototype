@@ -607,6 +607,27 @@
             }
         });
 
+
+        /* ── MOBILE TAP TO SHOW SERVICE TOOLTIP ──
+           On touch devices, tapping a card toggles the tooltip.
+           Tapping anywhere else closes all open tooltips.
+        ── */
+        document.querySelectorAll('.card').forEach(function(card) {
+            card.addEventListener('touchstart', function(e) {
+                const isAlreadyTapped = card.classList.contains('tapped');
+                // Close all other cards first
+                document.querySelectorAll('.card.tapped').forEach(c => c.classList.remove('tapped'));
+                if (!isAlreadyTapped) {
+                    card.classList.add('tapped');
+                    e.stopPropagation();
+                }
+            }, { passive: true });
+        });
+        // Tap anywhere else to close
+        document.addEventListener('touchstart', function() {
+            document.querySelectorAll('.card.tapped').forEach(c => c.classList.remove('tapped'));
+        }, { passive: true });
+
     </script>
 
 </body>
