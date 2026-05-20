@@ -799,10 +799,27 @@ td.status-ongoing   { color: #FFC107; font-weight: bold; }
     .card.tapped .tooltip { opacity: 1; }
     .card { padding-bottom: 20px; }
 
-    /* Projects — 2 per row */
-    .projects-grid { gap: 24px; }
-    .project-box   { width: 40vw; height: 40vw; }
-    .project-card p { max-width: 40vw; font-size: 11px; }
+    /* Projects — horizontal swipe scroll (same pattern as services) */
+    .projects-grid {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: visible;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        justify-content: flex-start;
+        gap: 16px;
+        margin-left: -20px;
+        margin-right: -20px;
+        padding: 10px 20px 20px;
+        scrollbar-width: none;
+    }
+    .projects-grid::-webkit-scrollbar { display: none; }
+    .project-card {
+        flex-shrink: 0;
+        scroll-snap-align: start;
+    }
+    .project-box   { width: 52vw; height: 52vw; }
+    .project-card p { max-width: 52vw; font-size: 11px; }
 
     /* Process — stack vertically */
     .process-steps  { flex-direction: column; align-items: center; gap: 20px; }
@@ -875,6 +892,10 @@ td.status-ongoing   { color: #FFC107; font-weight: bold; }
     /* Filters */
     .filter-btn { font-size: 11px; padding: 6px 12px; }
 
+    /* Projects — smaller cards on small phones */
+    .project-box   { width: 58vw; height: 58vw; }
+    .project-card p { max-width: 58vw; font-size: 10px; }
+
     /* Software — 4 visible at once on small screens */
     .software-item { width: 22vw; }
     .software-item img { max-height: 44px; }
@@ -915,3 +936,13 @@ td.status-ongoing   { color: #FFC107; font-weight: bold; }
        your styles here;
    }
    ============================================================ */
+/* ============================================================
+   LAST UPDATED
+   ============================================================ */
+.last-updated {
+    text-align: right;
+    padding: 10px 40px;
+    font-size: 11px;
+    color: #999;
+    letter-spacing: 0.3px;
+}
