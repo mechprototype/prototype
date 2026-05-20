@@ -30,14 +30,9 @@
 body {
     font-family: 'Eras Medium ITC', Arial, sans-serif;
     margin: 0;
-
-    background-color: #f2f3f5;
-background-image:
-    linear-gradient(45deg, rgba(160, 170, 185, 0.25) 1px, transparent 1px),
-    linear-gradient(-45deg, rgba(160, 170, 185, 0.25) 1px, transparent 1px);
-background-size: 22px 22px;
-
-    background-size: 30px 30px;
+    background-color: #eef1f6;
+    background-image: radial-gradient(circle, #b0c4de 1px, transparent 1px);
+    background-size: 28px 28px;
     color: #333;
 }
 
@@ -69,7 +64,7 @@ background-size: 22px 22px;
     justify-content: center;
     gap: 10px;
     padding: 10px 20px;
-    background: rgba(220, 227, 238, 0.88);
+    background: rgba(238, 241, 246, 0.85);
     backdrop-filter: blur(10px);
     transition: box-shadow 0.3s;
 }
@@ -753,13 +748,32 @@ td.status-ongoing   { color: #FFC107; font-weight: bold; }
     /* Sections */
     .section { padding: 40px 20px; }
 
-    /* Stats — 2 per row */
+    /* Stats — 3 per row on tablet, 2 on phone handled below */
     .stats { gap: 20px; padding: 30px 20px 10px; }
     .stat  { width: 140px; padding: 20px; }
     .stat h2 { font-size: 40px; }
 
-    /* Services — 2 per row */
-    .grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    /* Services — fixed 2 cols, 3 rows (6 cards) */
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    /* Tooltip — tap-friendly on mobile: always show below, no hover needed */
+    .tooltip {
+        position: static;
+        transform: none;
+        display: block;
+        opacity: 1;
+        background: transparent;
+        color: #888;
+        font-size: 11px;
+        padding: 4px 0 0;
+        border-radius: 0;
+        white-space: normal;
+        text-align: center;
+    }
+    .card { padding-bottom: 14px; }
 
     /* Projects — 2 per row */
     .projects-grid { gap: 24px; }
@@ -771,16 +785,41 @@ td.status-ongoing   { color: #FFC107; font-weight: bold; }
     .process-arrow  { transform: rotate(90deg); padding: 0; margin: 0; }
     .process-step   { width: 85%; }
 
-    /* Popup — stack vertically */
+    /* Popup — keep desktop side-by-side layout, just scale it down */
     .popup {
-        flex-direction: column;
-        gap: 20px;
-        padding: 30px 20px;
+        flex-direction: row;
+        gap: 16px;
+        padding: 24px 16px;
         max-width: 95vw;
+        align-items: flex-start;
     }
-    .popup-img1 { width: 100%; height: auto; max-height: 50vw; }
-    .popup-img2 { width: 70%; height: auto; }
-    .popup-right { min-width: unset; }
+    .popup-left { gap: 10px; }
+    .popup-img1 { width: 36vw; height: 36vw; }
+    .popup-img2 { width: 28vw; height: 28vw; }
+    .popup-right { min-width: unset; flex: 1; }
+    .popup-right h2 { font-size: 16px; margin-bottom: 12px; }
+    .details-table td { font-size: 12px; padding: 7px 4px; }
+    .details-table td.label { width: 70px; }
+
+    /* Software — smaller icons, at least 4 visible */
+    .software-item { width: 20vw; }
+    .software-item img { max-height: 50px; }
+
+    /* Countries — all 7 in one row, smaller */
+    .countries {
+        flex-wrap: nowrap;
+        gap: 4px;
+        overflow-x: auto;
+        padding-bottom: 8px;
+        justify-content: center;
+    }
+    .country-item {
+        width: auto;
+        flex-shrink: 0;
+        font-size: 11px;
+        gap: 4px;
+    }
+    .country-item img { width: 18px; }
 
     /* Contact icons */
     .contact-icons { gap: 1.5cm; }
@@ -795,9 +834,46 @@ td.status-ongoing   { color: #FFC107; font-weight: bold; }
 
 @media (max-width: 480px) {
     .navbar a { font-size: 11px; padding: 4px 8px; }
-    .grid { grid-template-columns: 1fr 1fr; }
+
+    /* Services — strict 2 col, 3 row on small phones */
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    .card { font-size: 13px; padding: 16px 12px 14px; }
+
+    /* Stats */
     .stat { width: 120px; }
+
+    /* Filters */
     .filter-btn { font-size: 11px; padding: 6px 12px; }
+
+    /* Software — 4 visible at once on small screens */
+    .software-item { width: 22vw; }
+    .software-item img { max-height: 44px; }
+
+    /* Countries — single scrollable row */
+    .countries {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding: 0 16px 10px;
+        gap: 6px;
+    }
+    .country-item {
+        font-size: 10px;
+        gap: 3px;
+        width: auto;
+        flex-shrink: 0;
+    }
+    .country-item img { width: 16px; }
+
+    /* Popup on small phones — keep row but tighter */
+    .popup { padding: 20px 12px; gap: 12px; }
+    .popup-img1 { width: 38vw; height: 38vw; }
+    .popup-img2 { width: 30vw; height: 30vw; }
+    .popup-right h2 { font-size: 14px; }
+    .details-table td { font-size: 11px; }
 }
 
 
