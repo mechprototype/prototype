@@ -753,10 +753,23 @@ td.status-ongoing   { color: #FFC107; font-weight: bold; }
     .stat  { width: 140px; padding: 20px; }
     .stat h2 { font-size: 40px; }
 
-    /* Services — fixed 2 cols, 3 rows (6 cards) */
+    /* Services — horizontal swipe scroll on mobile */
     .grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 14px;
+        padding: 10px 20px 20px;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+    }
+    .grid::-webkit-scrollbar { display: none; }
+    .card {
+        flex-shrink: 0;
+        width: 52vw;
+        scroll-snap-align: start;
+        padding-bottom: 20px;
     }
 
     /* Tooltip — tap-friendly on mobile: always show below, no hover needed */
@@ -842,12 +855,12 @@ td.status-ongoing   { color: #FFC107; font-weight: bold; }
 @media (max-width: 480px) {
     .navbar a { font-size: 11px; padding: 4px 8px; }
 
-    /* Services — strict 2 col, 3 row on small phones */
-    .grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+    /* Services — narrower cards on small phones */
+    .card {
+        width: 60vw;
+        font-size: 13px;
+        padding: 16px 12px 20px;
     }
-    .card { font-size: 13px; padding: 16px 12px 14px; }
 
     /* Stats */
     .stat { width: 120px; }
