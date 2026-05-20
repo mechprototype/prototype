@@ -1,26 +1,34 @@
 /* ============================================================
-   STYLE.CSS — Prototype | Mechanical Design
+   STYLE.CSS — Prototype | Mechanical Design Portfolio
    ------------------------------------------------------------
    TABLE OF CONTENTS
-   1.  Base / Body
-   2.  Hero
-   3.  About
-   4.  Stats
-   5.  Services
-   6.  Projects
-   7.  CTA
-   8.  Software & Tools
-   9.  Form
-   10. Contact
-   11. Popup Overlay
+    1.  Base / Body
+    2.  Navbar
+    3.  Hero
+    4.  About
+    5.  Stats
+    6.  Services
+    7.  Projects + Filter
+    8.  CTA
+    9.  Process
+   10.  Software & Tools
+   11.  Form
+   12.  Contact
+   13.  Footer
+   14.  Popup Overlay
+   15.  Scroll-to-top Button
+   16.  Entrance Animations
+   17.  Mobile Responsiveness
    ============================================================ */
 
 
 /* ============================================================
    1. BASE / BODY
    ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
 body {
-    font-family: Eras Medium ITC, sans-serif;
+    font-family: 'Eras Medium ITC', Arial, sans-serif;
     margin: 0;
     background-color: #eef1f6;
     background-image: radial-gradient(circle, #b0c4de 1px, transparent 1px);
@@ -28,119 +36,177 @@ body {
     color: #333;
 }
 
-/* Shared section wrapper — use this class for every new section */
+/* Shared section wrapper */
 .section {
-    padding: 50px;
+    padding: 50px 40px;
     text-align: center;
+}
+.section-sub {
+    color: #666;
+    font-size: 15px;
+    margin-top: -10px;
+    margin-bottom: 30px;
 }
 
 
 /* ============================================================
-   2. HERO
+   2. NAVBAR
+   Fixed at top, appears on scroll with shadow
+   Links: Home, About, Services, Projects, Process, Contact
+   ============================================================ */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 500;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 20px;
+    background: rgba(238, 241, 246, 0.85);
+    backdrop-filter: blur(10px);
+    transition: box-shadow 0.3s;
+}
+.navbar.scrolled {
+    box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+}
+.navbar a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    transition: background 0.2s, color 0.2s;
+}
+.navbar a:hover {
+    background: #007bff;
+    color: white;
+}
+
+
+/* ============================================================
+   3. HERO
    ============================================================ */
 .hero {
     text-align: center;
-    padding: 60px;
+    padding: 100px 40px 60px; /* extra top for navbar */
 }
-
 .logo {
     width: 800px;
     height: auto;
     max-width: 90%;
 }
-
 .hero p {
     margin-top: 10px;
     font-size: 18px;
     color: #555;
 }
+.hero-sub {
+    font-size: 14px !important;
+    color: #888 !important;
+    margin-top: 6px !important;
+    letter-spacing: 0.5px;
+}
 
 
 /* ============================================================
-   3. ABOUT
+   4. ABOUT
+   (inherits .section — no extra styles needed)
    ============================================================ */
-/* No extra styles needed — inherits .section */
 
 
 /* ============================================================
-   4. STATS
+   5. STATS
    ============================================================ */
 .stats {
     display: flex;
     justify-content: center;
-    gap: 50px;
+    gap: 40px;
     flex-wrap: wrap;
     padding: 40px 50px 20px;
 }
-
 .stat {
     background: white;
     padding: 30px;
     border-radius: 15px;
-    width: 180px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    width: 160px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: default;
 }
-
 .stat:hover {
     transform: translateY(-8px) scale(1.05);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
-
 .stat h2 {
-    font-size: 60px;
+    font-size: 52px;
     color: #007bff;
     margin: 0;
 }
-
 .stat p {
     margin: 6px 0 0;
+    font-size: 13px;
 }
-
-.icon {
-    margin-bottom: 10px;
-}
-
+.icon { margin-bottom: 10px; }
 .icon img {
     width: 1.5cm;
     height: 1.5cm;
     object-fit: contain;
 }
-
 .countries {
-    text-align: center;
-    margin-top: 15px;
-    color: #555;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 20px;
     padding-bottom: 30px;
+}
+.country-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: 90px;
+    justify-content: flex-start;
+    font-size: 14px;
+    font-weight: 500;
+    color: #666;
+    letter-spacing: 0.5px;
+}
+.country-item img {
+    width: 28px;
+    height: auto;
+    border-radius: 0;
+    box-shadow: none;
+    flex-shrink: 0;
+    display: block;
 }
 
 
 /* ============================================================
-   5. SERVICES
+   6. SERVICES
    ============================================================ */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 30px;
 }
-
 .card {
     position: relative;
     background: white;
     padding: 20px;
     border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.07);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: default;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+    font-size: 15px;
 }
-
 .card:hover {
     transform: translateY(-6px) scale(1.03);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
 }
-
 .tooltip {
     position: absolute;
     bottom: -45px;
@@ -156,76 +222,114 @@ body {
     font-size: 13px;
     z-index: 10;
 }
-
-.card:hover .tooltip {
-    opacity: 1;
-}
-
+.card:hover .tooltip { opacity: 1; }
 .completed { color: #4CAF50; }
 .running   { color: #FFC107; }
 
 
 /* ============================================================
-   6. PROJECTS
+   6. PROJECTS + FILTER BUTTONS
+   Filter buttons use data-tags on project cards.
    ============================================================ */
+
+/* Filter bar */
+.filter-bar {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+.filter-btn {
+    padding: 8px 20px;
+    border: 2px solid #007bff;
+    background: transparent;
+    color: #007bff;
+    border-radius: 25px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.25s, color 0.25s;
+}
+.filter-btn.active,
+.filter-btn:hover {
+    background: #007bff;
+    color: white;
+}
+
+/* Projects grid */
 .projects-grid {
     display: flex;
     justify-content: center;
-    gap: 100px;
+    gap: 60px;
     flex-wrap: wrap;
-    margin-top: 20px;
+    margin-top: 10px;
 }
-
 .project-card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 14px;
     cursor: pointer;
 }
-
 .project-box {
     width: 5cm;
     height: 5cm;
     border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .project-box:hover {
     transform: translateY(-10px) scale(1.05);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.20);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.20);
 }
-
 .project-box img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
 }
-
 .project-card p {
     margin: 0;
-    font-size: 14px;
+    font-size: 13px;
     color: #333;
     text-align: center;
+    max-width: 5cm;
+}
+
+/* View All button */
+.view-all-btn {
+    display: block;
+    margin: 30px auto 0;
+    padding: 10px 30px;
+    background: transparent;
+    border: 2px solid #007bff;
+    color: #007bff;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.25s, color 0.25s;
+}
+.view-all-btn:hover {
+    background: #007bff;
+    color: white;
 }
 
 
 /* ============================================================
-   7. CTA — HAVE A SIMILAR PROJECT?
+   8. CTA
    ============================================================ */
 .cta-section {
     text-align: center;
     padding: 60px 20px;
 }
-
 .cta-section h2 {
     margin-bottom: 20px;
     font-size: 24px;
+    line-height: 1.4;
 }
-
 .cta-btn {
     display: inline-block;
     padding: 14px 30px;
@@ -236,7 +340,6 @@ body {
     font-size: 16px;
     transition: background 0.3s, transform 0.3s;
 }
-
 .cta-btn:hover {
     background: #0056b3;
     transform: scale(1.05);
@@ -244,7 +347,72 @@ body {
 
 
 /* ============================================================
-   8. SOFTWARE & TOOLS
+   9. PROCESS — 4-step workflow
+   ============================================================ */
+.process-steps {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+.process-step {
+    background: white;
+    border-radius: 16px;
+    padding: 30px 24px;
+    width: 190px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.process-step:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.13);
+}
+.step-number {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #007bff;
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+.step-icon {
+    font-size: 36px;
+    margin: 10px 0 8px;
+}
+.process-step h3 {
+    margin: 0 0 8px;
+    font-size: 17px;
+    color: #111;
+}
+.process-step p {
+    font-size: 13px;
+    color: #666;
+    margin: 0;
+    line-height: 1.5;
+}
+/* Arrow between steps */
+.process-arrow {
+    font-size: 28px;
+    color: #007bff;
+    align-self: center;
+    padding: 0 10px;
+    margin-top: -20px;
+}
+
+
+/* ============================================================
+   10. SOFTWARE & TOOLS
    ============================================================ */
 .software-container {
     overflow: hidden;
@@ -252,19 +420,17 @@ body {
     background: transparent;
     margin-top: 10px;
 }
-
 .software-scroll {
     display: flex;
     gap: 30px;
     animation: scroll-left 20s linear infinite;
-    padding: 0 20px;
+    padding: 0;
+    width: max-content;
 }
-
 @keyframes scroll-left {
     0%   { transform: translateX(0); }
     100% { transform: translateX(-50%); }
 }
-
 .software-item {
     flex-shrink: 0;
     width: 4cm;
@@ -273,21 +439,17 @@ body {
     justify-content: center;
     transition: transform 0.3s ease;
 }
-
 .software-item img {
     width: 100%;
     height: auto;
     object-fit: contain;
     max-height: 80px;
 }
-
-.software-item:hover {
-    transform: scale(1.1);
-}
+.software-item:hover { transform: scale(1.1); }
 
 
 /* ============================================================
-   9. FORM
+   11. FORM
    ============================================================ */
 .project-form {
     display: flex;
@@ -296,7 +458,6 @@ body {
     max-width: 500px;
     margin: 20px auto 0;
 }
-
 .project-form input,
 .project-form select,
 .project-form textarea {
@@ -305,20 +466,17 @@ body {
     border: 1px solid #ccc;
     font-size: 14px;
     width: 100%;
-    box-sizing: border-box;
-    transition: border-color 0.2s, box-shadow 0.2s;
     background: #fff;
     color: #333;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
-
 .project-form input:focus,
 .project-form select:focus,
 .project-form textarea:focus {
     outline: none;
     border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+    box-shadow: 0 0 5px rgba(0,123,255,0.2);
 }
-
 .project-form button {
     margin-top: 10px;
     padding: 12px;
@@ -330,26 +488,35 @@ body {
     cursor: pointer;
     transition: background 0.3s, transform 0.3s;
 }
-
 .project-form button:hover {
     background: #0056b3;
     transform: scale(1.03);
 }
+.form-success {
+    display: none;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 18px 24px;
+    background: #e6f4ea;
+    border: 1px solid #4CAF50;
+    border-radius: 10px;
+    color: #2e7d32;
+    font-size: 15px;
+    text-align: center;
+}
+.project-form.hidden  { display: none !important; }
+.form-success.visible { display: block !important; }
 
 
 /* ============================================================
-   10. CONTACT
+   12. CONTACT
    ============================================================ */
-.contact-section {
-    padding-bottom: 60px;
-}
-
+.contact-section { padding-bottom: 60px; }
 .contact-sub {
     color: #888;
     margin-bottom: 40px;
     font-size: 15px;
 }
-
 .contact-icons {
     display: flex;
     justify-content: center;
@@ -357,50 +524,108 @@ body {
     gap: 3cm;
     flex-wrap: wrap;
 }
-
 .contact-card {
     display: inline-flex;
     text-decoration: none;
-    transition: transform 0.3s ease, filter 0.3s ease;
     background: none;
     border: none;
     padding: 0;
+    transition: transform 0.3s ease, filter 0.3s ease;
 }
-
 .contact-card img {
-    width: 70px;
-    height: 70px;
+    width: 1cm;
+    height: 1cm;
     object-fit: contain;
-    border-radius: 16px;
+    border-radius: 10px;
 }
-
 .contact-card:hover {
     transform: scale(1.2);
-    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.25));
 }
 
 
 /* ============================================================
-   11. POPUP OVERLAY
+   13. FOOTER
+   ============================================================ */
+.footer {
+    background: #1a1a2e;
+    color: #ccc;
+    padding: 50px 40px 20px;
+    margin-top: 20px;
+}
+.footer-inner {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    max-width: 900px;
+    margin: 0 auto 30px;
+}
+.footer-brand .footer-logo {
+    width: 160px;
+    height: auto;
+    margin-bottom: 10px;
+    opacity: 0.85;
+}
+.footer-brand p {
+    font-size: 13px;
+    color: #aaa;
+    margin: 0;
+}
+.footer-tagline {
+    color: #ffffff !important;
+    font-size: 13px;
+    margin: 0;
+}
+.footer-links,
+.footer-social {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.footer-links h4,
+.footer-social h4 {
+    color: #fff;
+    margin: 0 0 6px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+.footer-links a,
+.footer-social a {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
+}
+.footer-links a:hover,
+.footer-social a:hover { color: #4da3ff; }
+.footer-copy {
+    text-align: center;
+    font-size: 12px;
+    color: #ffffff;
+    border-top: 1px solid #2a2a3e;
+    padding-top: 16px;
+}
+
+
+/* ============================================================
+   14. POPUP OVERLAY
    ============================================================ */
 .overlay {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.75);
+    background: rgba(0,0,0,0.75);
     backdrop-filter: blur(6px);
     z-index: 1000;
     justify-content: center;
     align-items: center;
 }
-
-.overlay.active {
-    display: flex;
-}
-
+.overlay.active { display: flex; }
 .popup {
     position: relative;
-    background: rgba(20, 20, 20, 0.35);
+    background: rgba(20,20,20,0.35);
     backdrop-filter: blur(12px);
     border-radius: 18px;
     padding: 40px 50px;
@@ -410,146 +635,172 @@ body {
     max-width: 90vw;
     max-height: 90vh;
     overflow-y: auto;
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
 }
-
 .close-btn {
     position: absolute;
-    top: 12px;
-    right: 16px;
-    background: none;
-    border: none;
-    font-size: 26px;
-    cursor: pointer;
-    color: rgba(255, 255, 255, 0.7);
+    top: 12px; right: 16px;
+    background: none; border: none;
+    font-size: 26px; cursor: pointer;
+    color: rgba(255,255,255,0.7);
 }
-
-.close-btn:hover {
-    color: #fff;
-}
-
+.close-btn:hover { color: #fff; }
 .popup-left {
     display: flex;
     flex-direction: column;
     gap: 14px;
     flex-shrink: 0;
 }
-
 .popup-img1 {
-    width: 8cm;
-    height: 8cm;
+    width: 8cm; height: 8cm;
     object-fit: cover;
     border-radius: 14px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.35);
 }
-
 .popup-img2 {
-    width: 6cm;
-    height: 6cm;
+    width: 6cm; height: 6cm;
     object-fit: cover;
     border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
 }
-
 .popup-right {
     display: flex;
     flex-direction: column;
     min-width: 260px;
 }
-
 .popup-right h2 {
     margin-bottom: 20px;
     font-size: 24px;
     color: #ffffff;
 }
-
-.details-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.details-table tr {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-.details-table td {
-    padding: 10px 6px;
-    font-size: 16px;
-    color: #ffffff;
-}
-
+.details-table { width: 100%; border-collapse: collapse; }
+.details-table tr { border-bottom: 1px solid rgba(255,255,255,0.15); }
+.details-table td { padding: 10px 6px; font-size: 16px; color: #fff; vertical-align: top; }
 .details-table td.label {
     font-weight: bold;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255,255,255,0.6);
     width: 110px;
+    white-space: nowrap;
+}
+td.status-completed { color: #4CAF50; font-weight: bold; }
+td.status-ongoing   { color: #FFC107; font-weight: bold; }
+.scope-list { margin: 0; padding-left: 18px; color: #fff; }
+.scope-list li { margin-bottom: 4px; }
+
+
+/* ============================================================
+   15. SCROLL-TO-TOP BUTTON
+   ============================================================ */
+.scroll-top {
+    display: none;
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 999;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #007bff;
+    color: white;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 14px rgba(0,123,255,0.4);
+    transition: background 0.3s, transform 0.3s;
+}
+.scroll-top:hover {
+    background: #0056b3;
+    transform: scale(1.1);
 }
 
-td.status-completed {
-    color: #4CAF50;
-    font-weight: bold;
+
+/* ============================================================
+   16. ENTRANCE ANIMATIONS
+   Elements with .fade-in animate in when scrolled into view.
+   JS adds .visible via IntersectionObserver.
+   ============================================================ */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-td.status-ongoing {
-    color: #FFC107;
-    font-weight: bold;
+
+/* ============================================================
+   17. MOBILE RESPONSIVENESS
+   ============================================================ */
+@media (max-width: 768px) {
+
+    /* Navbar */
+    .navbar { gap: 4px; padding: 8px 10px; }
+    .navbar a { font-size: 12px; padding: 5px 10px; }
+
+    /* Hero */
+    .hero { padding: 80px 20px 40px; }
+    .logo { width: 100%; }
+
+    /* Sections */
+    .section { padding: 40px 20px; }
+
+    /* Stats — 2 per row */
+    .stats { gap: 20px; padding: 30px 20px 10px; }
+    .stat  { width: 140px; padding: 20px; }
+    .stat h2 { font-size: 40px; }
+
+    /* Services — 2 per row */
+    .grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+
+    /* Projects — 2 per row */
+    .projects-grid { gap: 24px; }
+    .project-box   { width: 40vw; height: 40vw; }
+    .project-card p { max-width: 40vw; font-size: 11px; }
+
+    /* Process — stack vertically */
+    .process-steps  { flex-direction: column; align-items: center; gap: 20px; }
+    .process-arrow  { transform: rotate(90deg); padding: 0; margin: 0; }
+    .process-step   { width: 85%; }
+
+    /* Popup — stack vertically */
+    .popup {
+        flex-direction: column;
+        gap: 20px;
+        padding: 30px 20px;
+        max-width: 95vw;
+    }
+    .popup-img1 { width: 100%; height: auto; max-height: 50vw; }
+    .popup-img2 { width: 70%; height: auto; }
+    .popup-right { min-width: unset; }
+
+    /* Contact icons */
+    .contact-icons { gap: 1.5cm; }
+
+    /* Footer */
+    .footer-inner { flex-direction: column; gap: 24px; }
+    .footer-brand .footer-logo { width: 120px; }
+
+    /* Scroll top */
+    .scroll-top { bottom: 18px; right: 18px; }
 }
 
-.scope-list {
-    margin: 0;
-    padding-left: 18px;
-}
-
-.scope-list li {
-    margin-bottom: 4px;
+@media (max-width: 480px) {
+    .navbar a { font-size: 11px; padding: 4px 8px; }
+    .grid { grid-template-columns: 1fr 1fr; }
+    .stat { width: 120px; }
+    .filter-btn { font-size: 11px; padding: 6px 12px; }
 }
 
 
 /* ============================================================
    ADD NEW SECTIONS BELOW THIS LINE
    ------------------------------------------------------------
-   Copy this template for each new section:
-
-   .your-section-class {
+   Template:
+   .new-section-class {
        your styles here;
    }
    ============================================================ */
-/* ============================================================
-   FORM SUCCESS MESSAGE
-   ============================================================ */
-.form-success {
-    display: none;
-    max-width: 500px;
-    margin: 20px auto;
-    padding: 18px 24px;
-    background: #e6f4ea;
-    border: 1px solid #4CAF50;
-    border-radius: 10px;
-    color: #2e7d32;
-    font-size: 15px;
-    text-align: center;
-}
-/* ============================================================
-   FORM SUCCESS MESSAGE
-   ============================================================ */
-.form-success {
-    display: none;
-    max-width: 500px;
-    margin: 20px auto;
-    padding: 18px 24px;
-    background: #e6f4ea;
-    border: 1px solid #4CAF50;
-    border-radius: 10px;
-    color: #2e7d32;
-    font-size: 15px;
-    text-align: center;
-}
-
-/* Hide form after successful submission */
-.project-form.hidden {
-    display: none !important;
-}
-
-/* Show success message after submission */
-.form-success.visible {
-    display: block !important;
-}

@@ -2,69 +2,121 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Prototype | Mechanical Design</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ── SEO & PAGE TITLE ── -->
+    <title>Prototype | Mechanical Design Engineer</title>
+    <meta name="description" content="Prototype — Mechanical Design Engineer specializing in CAD modeling, FEA simulation, assembly design, and product development. Serving clients across 6+ countries.">
+
+    <!-- ── OPEN GRAPH (LinkedIn, WhatsApp, Facebook previews) ── -->
+    <meta property="og:title"       content="Prototype | Mechanical Design Engineer">
+    <meta property="og:description" content="CAD Modeling • FEA Simulation • Assembly Design • Product Development. 12+ clients, 15+ projects across 6+ countries.">
+    <meta property="og:image"       content="Images/logo_white.png">
+    <meta property="og:type"        content="website">
+    <meta property="og:url"         content="">
+
+    <!-- ── TWITTER CARD ── -->
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:title"       content="Prototype | Mechanical Design Engineer">
+    <meta name="twitter:description" content="CAD Modeling • FEA Simulation • Assembly Design • Product Development.">
+    <meta name="twitter:image"       content="Images/logo_white.png">
+
+    <!-- ── FAVICON ── -->
+    <link rel="icon" type="image/png" href="Images/logo_favicon.png">
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
     <!-- ========================================
+         SCROLL-TO-TOP BUTTON
+         (appears after scrolling 300px)
+    ======================================== -->
+    <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">↑</button>
+
+
+    <!-- ========================================
+         STICKY NAV BAR
+    ======================================== -->
+    <nav class="navbar" id="navbar">
+        <a href="#hero">Home</a>
+        <a href="#about-section">About</a>
+        <a href="#services-section">Services</a>
+        <a href="#projects-section">Projects</a>
+        <a href="#process-section">Process</a>
+        <a href="#form">Contact</a>
+    </nav>
+
+
+    <!-- ========================================
          SECTION 1: HERO
     ======================================== -->
-    <section class="hero">
+    <section class="hero" id="hero">
         <img src="Images/logo_white.png" class="logo" id="siteLogo">
         <p>think & create</p>
-	<p class="hero-sub">
-	CAD Modeling • Simulation • Product Design • BOM & Drafting
-	</p>
+        <p class="hero-sub">CAD Modeling • Simulation • Product Design • BOM & Drafting</p>
     </section>
 
 
     <!-- ========================================
          SECTION 2: ABOUT
     ======================================== -->
-    <section class="section" id="about-section">
+    <section class="section fade-in" id="about-section">
         <h2>About</h2>
-        <p>Mechanical Design Engineer specializing in CAD modeling, simulation, and product development. 
-Experienced in delivering high-quality engineering solutions for clients across multiple industries and countries.</p>
+        <p>Mechanical Design Engineer specializing in CAD modeling, simulation, and product development.
+        Experienced in delivering high-quality engineering solutions for clients across multiple industries and countries.</p>
     </section>
 
 
     <!-- ========================================
          SECTION 3: STATS
+         To add a stat: copy a .stat block and update the icon, number, and label.
+         Icon images live in Images/Stats/
     ======================================== -->
-    <section class="stats">
+    <section class="stats fade-in">
         <div class="stat">
             <div class="icon"><img src="Images/Stats/client.png" alt="Clients"></div>
-            <h2>12+</h2>
+            <h2 class="count-up" data-target="12">0</h2>
             <p>Clients</p>
         </div>
         <div class="stat">
             <div class="icon"><img src="Images/Stats/project.png" alt="Projects"></div>
-            <h2>15+</h2>
+            <h2 class="count-up" data-target="15">0</h2>
             <p>Projects</p>
         </div>
         <div class="stat">
             <div class="icon"><img src="Images/Stats/country.png" alt="Countries"></div>
-            <h2>6+</h2>
+            <h2 class="count-up" data-target="6">0</h2>
             <p>Countries</p>
         </div>
         <div class="stat">
             <div class="icon"><img src="Images/Stats/success.png" alt="Success Rate"></div>
-            <h2>93%</h2>
+            <h2 class="count-up" data-target="93" data-suffix="%">0</h2>
             <p>Success Rate</p>
+        </div>
+        <div class="stat">
+            <div class="icon"><img src="Images/Stats/experience.png" alt="Experience"></div>
+            <h2 class="count-up" data-target="3" data-suffix="+">0</h2>
+            <p>Years Experience</p>
         </div>
     </section>
 
-    <div class="countries">
-        Australia • Turkey • India • Dubai • USA • Italy • Portugal
+    <div class="countries fade-in">
+        <span class="country-item"><img src="Images/Country/australia.png" alt="Australia"> AUS</span>
+        <span class="country-item"><img src="Images/Country/turkey.png"   alt="Turkey">    TUR</span>
+        <span class="country-item"><img src="Images/Country/india.png"    alt="India">     IND</span>
+        <span class="country-item"><img src="Images/Country/uae.png"      alt="UAE">       UAE</span>
+        <span class="country-item"><img src="Images/Country/usa.png"      alt="USA">       USA</span>
+        <span class="country-item"><img src="Images/Country/italy.png"    alt="Italy">     ITA</span>
+        <span class="country-item"><img src="Images/Country/portugal.png" alt="Portugal">  PRT</span>
     </div>
 
 
     <!-- ========================================
          SECTION 4: SERVICES
     ======================================== -->
-    <section class="section">
+    <section class="section fade-in" id="services-section">
         <h2>Services</h2>
         <div class="grid">
             <div class="card">3D Part Modeling
@@ -90,34 +142,47 @@ Experienced in delivering high-quality engineering solutions for clients across 
 
 
     <!-- ========================================
-         SECTION 5: PROJECTS
+         SECTION 5: FEATURED PROJECTS
+         Filter buttons map to data-tags on each project-card.
+         To add a project: add a card + matching entry in projectData JS object below.
+         Tags available: modeling, assembly, fea, drafting, rendering
     ======================================== -->
-    <section class="section">
-        <h2>Projects</h2>
-        <div class="projects-grid">
+    <section class="section fade-in" id="projects-section">
+        <h2>Featured Projects</h2>
 
-            <div class="project-card" onclick="openPopup('project1')">
+        <!-- Filter buttons -->
+        <div class="filter-bar">
+            <button class="filter-btn active" onclick="filterProjects('all')">All</button>
+            <button class="filter-btn" onclick="filterProjects('modeling')">3D Modeling</button>
+            <button class="filter-btn" onclick="filterProjects('assembly')">Assembly</button>
+            <button class="filter-btn" onclick="filterProjects('fea')">FEA</button>
+            <button class="filter-btn" onclick="filterProjects('drafting')">Drafting</button>
+        </div>
+
+        <div class="projects-grid" id="projectsGrid">
+
+            <div class="project-card" data-tags="modeling assembly drafting" onclick="openPopup('project1')">
                 <div class="project-box">
                     <img src="Images/Project1/Project1_img1.png" alt="Charpy Impact Testing Machine">
                 </div>
                 <p>Charpy Impact Testing Machine</p>
             </div>
 
-            <div class="project-card" onclick="openPopup('project2')">
+            <div class="project-card" data-tags="modeling assembly fea" onclick="openPopup('project2')">
                 <div class="project-box">
                     <img src="Images/Project2/Project2_img1.png" alt="Robotic Arm">
                 </div>
                 <p>Robotic Arm</p>
             </div>
 
-            <div class="project-card" onclick="openPopup('project3')">
+            <div class="project-card" data-tags="modeling assembly" onclick="openPopup('project3')">
                 <div class="project-box">
                     <img src="Images/Project3/Project3_img1.png" alt="Liebherr LH30">
                 </div>
                 <p>Liebherr LH30</p>
             </div>
 
-            <div class="project-card" onclick="openPopup('project4')">
+            <div class="project-card" data-tags="modeling assembly" onclick="openPopup('project4')">
                 <div class="project-box">
                     <img src="Images/Project4/Project4_img1.png" alt="JCB Backhoe Loader">
                 </div>
@@ -125,36 +190,85 @@ Experienced in delivering high-quality engineering solutions for clients across 
             </div>
 
             <!-- ── ADD NEW PROJECT CARDS BELOW THIS LINE ──
-            <div class="project-card" onclick="openPopup('project5')">
+            <div class="project-card" data-tags="modeling assembly" onclick="openPopup('project5')">
                 <div class="project-box">
                     <img src="Images/Project5/Project5_img1.png" alt="Project Title">
                 </div>
                 <p>Project Title</p>
             </div>
-            ── END OF PROJECT CARDS ── -->
+            ── END NEW PROJECTS ── -->
+
+        </div>
+
+        <!-- View All toggle — shows after first 4 if more projects are added -->
+        <button class="view-all-btn" id="viewAllBtn" onclick="toggleViewAll()" style="display:none">View All Projects ▾</button>
+    </section>
+
+
+    <!-- ========================================
+         SECTION 6: CTA
+    ======================================== -->
+    <section class="cta-section fade-in">
+        <h2>Have a project in mind?<br>Let's bring your idea to life.</h2>
+        <a href="#form" class="cta-btn">Start Your Project Request</a>
+    </section>
+
+
+    <!-- ========================================
+         SECTION 7: PROCESS
+         Shows the 4-step workflow. Edit step titles/descriptions below.
+    ======================================== -->
+    <section class="section fade-in" id="process-section">
+        <h2>How It Works</h2>
+        <p class="section-sub">A simple, transparent process from idea to delivery</p>
+
+        <div class="process-steps">
+
+            <div class="process-step">
+                <div class="step-number">01</div>
+                <div class="step-icon">📋</div>
+                <h3>Brief</h3>
+                <p>Share your requirements, references, and specifications. We discuss scope, timeline, and budget.</p>
+            </div>
+
+            <div class="process-arrow">→</div>
+
+            <div class="process-step">
+                <div class="step-number">02</div>
+                <div class="step-icon">✏️</div>
+                <h3>Design</h3>
+                <p>CAD modeling, simulation, or drafting begins. Regular updates keep you in the loop.</p>
+            </div>
+
+            <div class="process-arrow">→</div>
+
+            <div class="process-step">
+                <div class="step-number">03</div>
+                <div class="step-icon">🔍</div>
+                <h3>Review</h3>
+                <p>You review the deliverables. Feedback is incorporated and revisions are made until satisfied.</p>
+            </div>
+
+            <div class="process-arrow">→</div>
+
+            <div class="process-step">
+                <div class="step-number">04</div>
+                <div class="step-icon">📦</div>
+                <h3>Delivery</h3>
+                <p>Final files delivered in your preferred format. Full documentation and BOM included if required.</p>
+            </div>
 
         </div>
     </section>
 
 
     <!-- ========================================
-         SECTION 6: CTA — HAVE A SIMILAR PROJECT?
+         SECTION 8: SOFTWARE EXPERTISE
     ======================================== -->
-    <section class="cta-section">
-        <h2>Have a project in mind?
-	Let’s bring your idea to life.</h2>
-        <a href="#form" class="cta-btn">Start Your Project Request</a>
-    </section>
-
-
-    <!-- ========================================
-         SECTION 7: SOFTWARE & TOOLS
-    ======================================== -->
-    <section class="section">
-        <h2>Software & Tools</h2>
+    <section class="section fade-in">
+        <h2>Software Expertise</h2>
         <div class="software-container">
             <div class="software-scroll">
-                <!-- Original set -->
                 <div class="software-item" title="SolidWorks"><img src="Images/Software/solidworks.png" alt="SolidWorks"></div>
                 <div class="software-item" title="CATIA"><img src="Images/Software/catia.png" alt="CATIA"></div>
                 <div class="software-item" title="ANSYS"><img src="Images/Software/ansys.png" alt="ANSYS"></div>
@@ -163,7 +277,7 @@ Experienced in delivering high-quality engineering solutions for clients across 
                 <div class="software-item" title="Fusion 360"><img src="Images/Software/fusion360.png" alt="Fusion 360"></div>
                 <div class="software-item" title="Ultimaker Cura"><img src="Images/Software/cura.png" alt="Ultimaker Cura"></div>
                 <div class="software-item" title="AutoCAD"><img src="Images/Software/autocad.png" alt="AutoCAD"></div>
-                <!-- Duplicated for continuous scroll loop -->
+                <!-- Duplicated for seamless loop -->
                 <div class="software-item" title="SolidWorks"><img src="Images/Software/solidworks.png" alt="SolidWorks"></div>
                 <div class="software-item" title="CATIA"><img src="Images/Software/catia.png" alt="CATIA"></div>
                 <div class="software-item" title="ANSYS"><img src="Images/Software/ansys.png" alt="ANSYS"></div>
@@ -178,37 +292,28 @@ Experienced in delivering high-quality engineering solutions for clients across 
 
 
     <!-- ========================================
-         SECTION 8: PROJECT REQUEST FORM
+         SECTION 9: PROJECT REQUEST FORM
     ======================================== -->
-    <section class="section" id="form">
+    <section class="section fade-in" id="form">
         <h2>Start Your Project</h2>
 
-        <!-- Shown after successful submission -->
         <div class="form-success" id="formSuccess">
-            ✅ Thank you! Your request has been submitted. I'll get back to you soon.
+            ✅ Thank you! Your request has been received. I'll get back to you shortly.
         </div>
 
-        <form
-            class="project-form"
-            id="projectForm"
-            action="https://formspree.io/f/xdajonnn"
-            method="POST"
-        >
-            <!-- Custom email subject line -->
-            <input type="hidden" name="_subject" value="New Project Request — Prototype Mechanical Design">
-
-            <input type="text"  name="Full Name"           placeholder="Full Name" required>
-            <input type="text"  name="Organization"        placeholder="Organization Name (optional)">
-            <input type="email" name="Email"               placeholder="Email Address" required>
-            <input type="text"  name="Phone"               placeholder="Phone (in international format)">
-            <input type="text"  name="Country"             placeholder="Country">
-            <input type="text"  name="City"                placeholder="City">
-            <select name="Project Type" required>
+        <form class="project-form" id="projectForm" action="https://formspree.io/f/xwpbopnb" method="POST">
+            <input type="text"  name="full_name"          placeholder="Full Name" required>
+            <input type="text"  name="org_name"           placeholder="Organization Name (optional)">
+            <input type="email" name="email"              placeholder="Email Address" required>
+            <input type="text"  name="phone"              placeholder="Phone (international format)">
+            <input type="text"  name="country"            placeholder="Country">
+            <input type="text"  name="city"               placeholder="City">
+            <select name="project_type" required>
                 <option value="">Select Project Type</option>
                 <option>Personal</option>
                 <option>Commercial</option>
             </select>
-            <select name="Service Required" required>
+            <select name="service" required>
                 <option value="">Service Required</option>
                 <option>3D Part Modeling</option>
                 <option>Assembly Design</option>
@@ -217,11 +322,11 @@ Experienced in delivering high-quality engineering solutions for clients across 
                 <option>Rendering</option>
                 <option>Other</option>
             </select>
-            <input type="text" name="Preferred Software" placeholder="Preferred Software">
-            <input type="text" name="Preferred Version"  placeholder="Preferred Version">
-            <input type="text" name="National Currency"  placeholder="Your National Currency">
-            <select name="Budget Range">
-                <option value="">Approximate Budget Range</option>
+            <input type="text" name="software"  placeholder="Preferred Software">
+            <input type="text" name="version"   placeholder="Preferred Version">
+            <input type="file" name="files"     multiple>
+            <select name="budget">
+                <option>Approximate Budget Range</option>
                 <option>Below $20</option>
                 <option>$21 - $50</option>
                 <option>$51 - $100</option>
@@ -229,9 +334,9 @@ Experienced in delivering high-quality engineering solutions for clients across 
                 <option>$501 - $1000</option>
                 <option>Above $1000</option>
             </select>
-            <textarea name="Project Description" rows="5" placeholder="Describe your project requirements (dimensions, functionality, references, etc.)"></textarea>
-            <select name="How did you find me">
-                <option value="">How did you find me?</option>
+            <textarea name="description" rows="5" placeholder="Describe your project requirements (dimensions, functionality, references, etc.)"></textarea>
+            <select name="referral">
+                <option>How did you find me?</option>
                 <option>LinkedIn</option>
                 <option>Telegram</option>
                 <option>Google</option>
@@ -243,26 +348,53 @@ Experienced in delivering high-quality engineering solutions for clients across 
 
 
     <!-- ========================================
-         SECTION 9: CONTACT
+         SECTION 10: CONTACT
     ======================================== -->
-    <section class="section contact-section">
+    <section class="section contact-section fade-in">
         <h2>Contact</h2>
         <p class="contact-sub">Feel free to reach out through any platform</p>
         <div class="contact-icons">
-            <a href="https://wa.me/918949354665" target="_blank" class="contact-card">
-                <img src="Images/Contact/whatsapp.png" alt="WhatsApp">
-            </a>
-            <a href="mailto:mechprototype0@gmail.com" target="_blank" class="contact-card">
-                <img src="Images/Contact/gmail.png" alt="Gmail">
-            </a>
-            <a href="https://t.me/mech_prototype" target="_blank" class="contact-card">
-                <img src="Images/Contact/telegram.png" alt="Telegram">
-            </a>
-            <a href="https://www.linkedin.com/company/prototype-mech/" target="_blank" class="contact-card">
-                <img src="Images/Contact/linkedin.png" alt="LinkedIn">
-            </a>
+            <a href="https://wa.me/918949354665"                    target="_blank" class="contact-card"><img src="Images/Contact/whatsapp.png" alt="WhatsApp"></a>
+            <a href="mailto:mechprototype0@gmail.com"               target="_blank" class="contact-card"><img src="Images/Contact/gmail.png"     alt="Gmail"></a>
+            <a href="https://t.me/mech_prototype"                   target="_blank" class="contact-card"><img src="Images/Contact/telegram.png"  alt="Telegram"></a>
+            <a href="https://www.linkedin.com/company/prototype-mech/" target="_blank" class="contact-card"><img src="Images/Contact/linkedin.png"  alt="LinkedIn"></a>
         </div>
     </section>
+
+
+    <!-- ========================================
+         FOOTER
+    ======================================== -->
+    <footer class="footer">
+        <div class="footer-inner">
+
+            <div class="footer-brand">
+                <img src="Images/logo_footer.png" alt="Prototype" class="footer-logo">
+                <p class="footer-tagline">Think & Create</p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="#about-section">About</a>
+                <a href="#services-section">Services</a>
+                <a href="#projects-section">Projects</a>
+                <a href="#process-section">Process</a>
+                <a href="#form">Start a Project</a>
+            </div>
+
+            <div class="footer-social">
+                <h4>Connect</h4>
+                <a href="https://wa.me/918949354665"                       target="_blank">WhatsApp</a>
+                <a href="mailto:mechprototype0@gmail.com"                  target="_blank">Gmail</a>
+                <a href="https://t.me/mech_prototype"                      target="_blank">Telegram</a>
+                <a href="https://www.linkedin.com/company/prototype-mech/" target="_blank">LinkedIn</a>
+            </div>
+
+        </div>
+        <div class="footer-copy">
+            © <span id="footerYear"></span> Prototype Mechanical Design. All rights reserved.
+        </div>
+    </footer>
 
 
     <!-- ========================================
@@ -278,9 +410,9 @@ Experienced in delivering high-quality engineering solutions for clients across 
             <div class="popup-right">
                 <h2 id="popup-name"></h2>
                 <table class="details-table">
-                    <tr><td class="label">Status</td><td id="popup-status"></td></tr>
+                    <tr><td class="label">Status</td>  <td id="popup-status"></td></tr>
                     <tr><td class="label">Duration</td><td id="popup-duration"></td></tr>
-                    <tr><td class="label">Scope</td><td id="popup-scope"></td></tr>
+                    <tr><td class="label">Scope</td>   <td id="popup-scope"></td></tr>
                     <tr><td class="label">Location</td><td id="popup-location"></td></tr>
                 </table>
             </div>
@@ -295,66 +427,56 @@ Experienced in delivering high-quality engineering solutions for clients across 
 
         /* ── PROJECT DATA ──
            To add a new project:
-           1. Add a new entry below following the same pattern
-           2. Add a matching project-card in Section 5 above
+           1. Add entry here
+           2. Add matching .project-card in Section 5 above
+           3. Add data-tags attribute to the card (modeling / assembly / fea / drafting / rendering)
         ── */
         const projectData = {
             project1: {
                 name: "Charpy Impact Testing Machine",
-                status: "On-Going",
-                duration: "-",
+                status: "On-Going", duration: "-",
                 scope: ["Part development", "Assembly", "Drafting"],
-                location: "Turkey",
-                flag: "🇹🇷",
+                location: "Turkey",  flag: "Images/Country/turkey.png",
                 img1: "Images/Project1/Project1_img1.png",
                 img2: "Images/Project1/Project1_img2.png"
             },
             project2: {
                 name: "Robotic Arm",
-                status: "On-Going",
-                duration: "-",
+                status: "On-Going", duration: "-",
                 scope: ["Part development", "Assembly", "FEA", "Motion Analysis"],
-                location: "India",
-                flag: "🇮🇳",
+                location: "India",   flag: "Images/Country/india.png",
                 img1: "Images/Project2/Project2_img1.png",
                 img2: "Images/Project2/Project2_img2.png"
             },
             project3: {
                 name: "Liebherr LH30",
-                status: "Completed",
-                duration: "3 months",
+                status: "Completed", duration: "3 months",
                 scope: ["Part development", "Assembly", "Motion Analysis"],
-                location: "India",
-                flag: "🇮🇳",
+                location: "India",   flag: "Images/Country/india.png",
                 img1: "Images/Project3/Project3_img1.png",
                 img2: "Images/Project3/Project3_img2.png"
             },
             project4: {
                 name: "JCB Backhoe Loader",
-                status: "Completed",
-                duration: "7 months",
+                status: "Completed", duration: "7 months",
                 scope: ["Part development", "Assembly", "Motion Analysis"],
-                location: "India",
-                flag: "🇮🇳",
+                location: "India",   flag: "Images/Country/india.png",
                 img1: "Images/Project4/Project4_img1.png",
                 img2: "Images/Project4/Project4_img2.png"
             }
             /* ── ADD NEW PROJECT DATA HERE ──
-            ,
-            project5: {
+            ,project5: {
                 name: "Your Project Title",
-                status: "On-Going",       // or "Completed"
-                duration: "-",            // e.g. "2 months"
-                scope: ["Part development", "Assembly"],
-                location: "Country Name",
-                flag: "🏳️",
+                status: "On-Going", duration: "-",
+                scope: ["Part development"],
+                location: "Country", flag: "Images/Country/australia.png",
                 img1: "Images/Project5/Project5_img1.png",
                 img2: "Images/Project5/Project5_img2.png"
             }
             ── */
         };
 
-        /* ── POPUP LOGIC ── */
+        /* ── POPUP ── */
         function openPopup(id) {
             const d = projectData[id];
             document.getElementById('popup-img1').src = d.img1;
@@ -364,59 +486,122 @@ Experienced in delivering high-quality engineering solutions for clients across 
             statusEl.textContent = d.status;
             statusEl.className = d.status === 'Completed' ? 'status-completed' : 'status-ongoing';
             document.getElementById('popup-duration').textContent = d.duration;
-            const scopeEl = document.getElementById('popup-scope');
-            scopeEl.innerHTML = '<ul class="scope-list">' + d.scope.map(s => `<li>${s}</li>`).join('') + '</ul>';
-            document.getElementById('popup-location').textContent = d.flag + '  ' + d.location;
+            document.getElementById('popup-scope').innerHTML =
+                '<ul class="scope-list">' + d.scope.map(s => `<li>${s}</li>`).join('') + '</ul>';
+            document.getElementById('popup-location').innerHTML = '<img src="' + d.flag + '" style="width:22px;height:auto;border-radius:2px;vertical-align:middle;margin-right:8px;">' + d.location;
             document.getElementById('overlay').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
-
         function closePopup() {
             document.getElementById('overlay').classList.remove('active');
             document.body.style.overflow = '';
         }
 
-        /* ── FORM SUBMIT: Formspree (email) + Google Sheets (logging) ── */
+        /* ── PROJECT FILTER ── */
+        const VISIBLE_DEFAULT = 4; // cards shown before "View All"
+        function filterProjects(tag) {
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const cards = document.querySelectorAll('.project-card');
+            let shown = 0;
+            cards.forEach(card => {
+                const tags = card.dataset.tags || '';
+                const match = tag === 'all' || tags.includes(tag);
+                card.style.display = match ? 'flex' : 'none';
+                if (match) shown++;
+            });
+            // Show "View All" only when there are more than default visible
+            document.getElementById('viewAllBtn').style.display =
+                shown > VISIBLE_DEFAULT ? 'block' : 'none';
+        }
+
+        /* ── VIEW ALL TOGGLE ── */
+        let expanded = false;
+        function toggleViewAll() {
+            expanded = !expanded;
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach((c, i) => {
+                if (i >= VISIBLE_DEFAULT) c.style.display = expanded ? 'flex' : 'none';
+            });
+            document.getElementById('viewAllBtn').textContent =
+                expanded ? 'Show Less ▴' : 'View All Projects ▾';
+        }
+
+        /* ── SCROLL-TO-TOP BUTTON ── */
+        window.addEventListener('scroll', () => {
+            const btn = document.getElementById('scrollTop');
+            btn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+
+            // Navbar shadow on scroll
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 10);
+        });
+
+        /* ── SECTION ENTRANCE ANIMATIONS (IntersectionObserver) ── */
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        /* ── COUNT-UP ANIMATION for stats ── */
+        const countObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('.count-up').forEach(el => {
+                        const target = +el.dataset.target;
+                        const suffix = el.dataset.suffix || '+';
+                        let current = 0;
+                        const step = Math.ceil(target / 40);
+                        const timer = setInterval(() => {
+                            current = Math.min(current + step, target);
+                            el.textContent = current + suffix;
+                            if (current >= target) clearInterval(timer);
+                        }, 40);
+                    });
+                    countObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('.stats').forEach(el => countObserver.observe(el));
+
+        /* ── FOOTER YEAR ── */
+        document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+        /* ── FORM SUBMIT ── */
         const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbxSiJB_ZwZiqauuBtdsXEAUG2OP1SHL4vWk_FaZwlA_mDPd8VXyrrhYDdilRUvHyBJ79w/exec';
-
-
         const form = document.getElementById('projectForm');
         const successMsg = document.getElementById('formSuccess');
 
-        form.addEventListener('submit', async function (e) {
+        form.addEventListener('submit', async function(e) {
             e.preventDefault();
-
             const formData = new FormData(form);
-
-            // ── Build a plain JSON object from the form fields ──
             const jsonData = {};
-            formData.forEach((value, key) => { jsonData[key] = value; });
-
+            formData.forEach((v, k) => { jsonData[k] = v; });
             try {
-                // ── 1. Send to Formspree (email notification) ──
-                const formspreeRes = await fetch(form.action, {
-                    method: 'POST',
-                    body: formData,
+                const res = await fetch(form.action, {
+                    method: 'POST', body: formData,
                     headers: { 'Accept': 'application/json' }
                 });
-
-                // ── 2. Send to Google Sheets (data logging) ──
                 await fetch(GOOGLE_SHEET_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
+                    method: 'POST', mode: 'no-cors',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(jsonData)
                 });
-
-                // ── Show success if Formspree accepted it ──
-                if (formspreeRes.ok) {
+                if (res.ok) {
                     form.reset();
                     form.classList.add('hidden');
                     successMsg.classList.add('visible');
                 } else {
                     alert('Something went wrong. Please try again or contact me directly.');
                 }
-
             } catch (err) {
                 alert('Network error. Please check your connection and try again.');
             }
