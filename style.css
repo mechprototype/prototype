@@ -746,7 +746,7 @@ td.status-ongoing   { color: #FFC107; font-weight: bold; }
     .logo { width: 100%; }
 
     /* Sections */
-    .section { padding: 40px 20px; }
+    .section { padding: 40px 20px; overflow: visible; }
 
     /* Stats — 3 per row on tablet, 2 on phone handled below */
     .stats { gap: 20px; padding: 30px 20px 10px; }
@@ -761,19 +761,22 @@ td.status-ongoing   { color: #FFC107; font-weight: bold; }
         overflow-y: visible;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
-        gap: 14px;
-        /* pull grid out of section padding so it scrolls edge-to-edge */
+        gap: 12px;
         margin-left: -20px;
         margin-right: -20px;
-        padding: 10px 20px 30px;
+        /* bottom padding must exceed tooltip offset (45px) to avoid clipping */
+        padding: 10px 20px 60px;
         scrollbar-width: none;
     }
     .grid::-webkit-scrollbar { display: none; }
     .card {
         flex-shrink: 0;
-        width: 60vw;
-        min-width: 180px;
+        /* ~40vw shows 2 full cards + half of third */
+        width: 40vw;
+        min-width: 140px;
         scroll-snap-align: start;
+        font-size: 13px;
+        padding: 16px 12px;
     }
 
     /* Tooltip — tap-friendly on mobile: always show below, no hover needed */
@@ -861,9 +864,9 @@ td.status-ongoing   { color: #FFC107; font-weight: bold; }
 
     /* Services — narrower cards on small phones */
     .card {
-        width: 60vw;
-        font-size: 13px;
-        padding: 16px 12px 20px;
+        width: 42vw;
+        font-size: 12px;
+        padding: 14px 10px;
     }
 
     /* Stats */
